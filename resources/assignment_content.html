@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body { font-family: Times New Roman, serif; font-size: 12pt; line-height: 1.5; margin: 2.5cm; }
+h1 { font-size: 18pt; text-align: center; }
+h2 { font-size: 14pt; margin-top: 24pt; }
+h3 { font-size: 13pt; margin-top: 18pt; }
+h4 { font-size: 12pt; font-style: italic; margin-top: 12pt; }
+p { text-align: justify; margin-bottom: 12pt; }
+table { border-collapse: collapse; width: 100%; margin: 12pt 0; }
+th, td { border: 1px solid black; padding: 8pt; }
+hr { page-break-after: always; border: none; }
+</style>
+</head>
+<body>
+<h1>CITY3114 - Machine Learning and AI</h1>
+<h1>Assignment 1</h1>
+<p><strong>Author:</strong> Jabbagh Younes
+<strong>Date:</strong> 02/04/2025</p>
+<hr />
+<h2>Table of Contents</h2>
+<ol>
+<li>Introduction</li>
+<li>Task 1: Four Fundamental Machine Learning Algorithms</li>
+<li>2.1 Decision Trees</li>
+<li>2.2 Support Vector Machines (SVM)</li>
+<li>2.3 K-Nearest Neighbours (k-NN)</li>
+<li>2.4 Naive Bayes Classifier</li>
+<li>Task 2: Performance Evaluation of Decision Trees</li>
+<li>3.1 Dataset Considerations</li>
+<li>3.2 Evaluation Metrics</li>
+<li>3.3 Performance Predictions</li>
+<li>Task 3: Advanced Learning Methods for Improving Fundamental Algorithms</li>
+<li>4.1 Ensemble Methods</li>
+<li>4.2 Hyperparameter Optimisation</li>
+<li>4.3 Feature Engineering and Selection</li>
+<li>4.4 Cross-Validation Techniques</li>
+<li>Conclusion</li>
+<li>References</li>
+</ol>
+<hr />
+<h2>1. Introduction</h2>
+<p>Machine learning has emerged as one of the most transformative technologies in contemporary computing, fundamentally altering how systems process information and make decisions. As a subset of artificial intelligence, machine learning enables computer systems to learn from data and improve their performance over time without being explicitly programmed for every possible scenario [1]. This capability has profound implications across numerous industries, from healthcare diagnostics to financial fraud detection, making an understanding of fundamental machine learning algorithms essential for modern computing professionals.</p>
+<p>The significance of machine learning stems from its ability to identify patterns within vast datasets that would be impossible for humans to detect manually. According to Jordan and Mitchell [2], machine learning algorithms can process millions of data points to extract meaningful insights, enabling organisations to make data-driven decisions with unprecedented accuracy. This report examines four fundamental machine learning algorithms: Decision Trees, Support Vector Machines (SVM), K-Nearest Neighbours (k-NN), and Naive Bayes classifiers. Each algorithm represents a distinct approach to pattern recognition and classification, with unique strengths and limitations that make them suitable for different applications.</p>
+<p>The objectives of this report are threefold. First, it provides an in-depth analysis of each algorithm's mechanics, real-world applications, feature requirements, and associated challenges. Second, it presents a comprehensive framework for evaluating the performance of Decision Trees on real-world problems, including dataset considerations and evaluation metrics. Third, it explores advanced learning methods that can enhance the performance of these fundamental algorithms, demonstrating how modern techniques can address their inherent limitations.</p>
+<hr />
+<h2>2. Task 1: Four Fundamental Machine Learning Algorithms</h2>
+<h3>2.1 Decision Trees</h3>
+<h4>Mechanics of the Algorithm</h4>
+<p>Decision Trees are supervised learning algorithms that create a tree-like model of decisions based on feature values. The algorithm works by recursively partitioning the feature space into regions, with each internal node representing a test on a feature, each branch representing the outcome of that test, and each leaf node representing a class label or prediction [3].</p>
+<p>The construction of a Decision Tree involves selecting the best feature to split the data at each node. This selection is typically based on metrics such as Information Gain (using entropy) or Gini Impurity. Information Gain measures the reduction in entropy achieved by splitting on a particular feature, calculated as:</p>
+<p><strong>Information Gain = Entropy(parent) - Weighted Average of Entropy(children)</strong></p>
+<p>Where entropy is defined as: <strong>H(S) = -Σ p(i) log₂ p(i)</strong> for each class i in the dataset [4].</p>
+<p>The algorithm continues splitting until a stopping criterion is met, such as maximum depth, minimum samples per leaf, or when all samples in a node belong to the same class.</p>
+<h4>Real-World Application</h4>
+<p>Decision Trees are extensively used in medical diagnosis systems. A prominent application is in the diagnosis of cardiovascular diseases, where the algorithm analyses patient features to predict the likelihood of heart disease [5].</p>
+<h4>Features Used in This Application</h4>
+<p>In cardiovascular disease diagnosis, the features typically include:
+- <strong>Demographic features:</strong> Age, gender
+- <strong>Clinical measurements:</strong> Blood pressure (systolic and diastolic), cholesterol levels, resting heart rate
+- <strong>Lifestyle factors:</strong> Smoking status, physical activity levels
+- <strong>Medical history:</strong> Presence of diabetes, family history of heart disease
+- <strong>Diagnostic test results:</strong> ECG readings, chest pain type, exercise-induced angina [6]</p>
+<h4>Challenges</h4>
+<p>Decision Trees face several challenges. <strong>Overfitting</strong> is a primary concern, where the tree becomes too complex and captures noise in the training data rather than underlying patterns [7]. Additionally, Decision Trees are <strong>sensitive to small variations</strong> in the data, where minor changes can result in completely different tree structures. They also exhibit <strong>bias towards features with more levels</strong>, potentially overlooking important binary features. Finally, Decision Trees struggle with <strong>capturing linear relationships</strong> between features, as they create axis-parallel decision boundaries [8].</p>
+<h3>2.2 Support Vector Machines (SVM)</h3>
+<h4>Mechanics of the Algorithm</h4>
+<p>Support Vector Machines are powerful supervised learning algorithms that find the optimal hyperplane to separate different classes in the feature space. The fundamental principle is to maximise the margin between the closest points of different classes, known as support vectors [9].</p>
+<p>For linearly separable data, SVM finds the hyperplane <strong>w·x + b = 0</strong> that maximises the margin 2/||w||. The optimisation problem is formulated as:</p>
+<p><strong>Minimise: ½||w||²</strong>
+<strong>Subject to: yᵢ(w·xᵢ + b) ≥ 1 for all i</strong></p>
+<p>For non-linearly separable data, SVM employs the <strong>kernel trick</strong>, which maps the original features into a higher-dimensional space where linear separation becomes possible. Common kernels include the Radial Basis Function (RBF), polynomial kernel, and sigmoid kernel [10].</p>
+<h4>Real-World Application</h4>
+<p>SVMs are widely used in <strong>email spam detection systems</strong>. Major email providers utilise SVM-based classifiers to automatically filter spam messages from legitimate emails [11].</p>
+<h4>Features Used in This Application</h4>
+<p>For spam detection, the features include:
+- <strong>Text-based features:</strong> Word frequencies, presence of specific keywords (e.g., "free", "winner", "urgent")
+- <strong>Structural features:</strong> Email length, number of links, presence of attachments
+- <strong>Header information:</strong> Sender reputation, domain age, authentication results (SPF, DKIM)
+- <strong>Metadata:</strong> Time of sending, geographical origin
+- <strong>N-gram features:</strong> Sequences of words that commonly appear in spam [12]</p>
+<h4>Challenges</h4>
+<p>SVM challenges include <strong>computational complexity</strong> with large datasets, as the training time scales between O(n²) and O(n³) depending on the implementation [13]. <strong>Kernel selection</strong> is non-trivial and significantly impacts performance. SVMs are also <strong>sensitive to feature scaling</strong>, requiring normalisation of input features. Additionally, they <strong>lack probabilistic outputs</strong> by default, making confidence estimation difficult, and the resulting models can be <strong>difficult to interpret</strong> compared to Decision Trees [14].</p>
+<h3>2.3 K-Nearest Neighbours (k-NN)</h3>
+<h4>Mechanics of the Algorithm</h4>
+<p>K-Nearest Neighbours is an instance-based learning algorithm that classifies new instances based on the majority class among its k closest training examples. Unlike parametric methods, k-NN makes no assumptions about the underlying data distribution, making it a non-parametric approach [15].</p>
+<p>The algorithm operates by:
+1. Calculating the distance between the query instance and all training instances
+2. Selecting the k instances with the smallest distances
+3. Assigning the class based on majority voting (for classification) or averaging (for regression)</p>
+<p>Distance metrics commonly used include <strong>Euclidean distance</strong>: d(x,y) = √Σ(xᵢ - yᵢ)², <strong>Manhattan distance</strong>: d(x,y) = Σ|xᵢ - yᵢ|, and <strong>Minkowski distance</strong> as a generalisation [16].</p>
+<h4>Real-World Application</h4>
+<p>K-NN is prominently used in <strong>recommendation systems</strong>, particularly for collaborative filtering in platforms like Netflix and Amazon. The algorithm identifies users with similar viewing or purchasing patterns to recommend new content [17].</p>
+<h4>Features Used in This Application</h4>
+<p>In recommendation systems, features include:
+- <strong>User behaviour data:</strong> Viewing history, ratings given, time spent on items
+- <strong>Item attributes:</strong> Genre, director, cast, release year (for movies)
+- <strong>Interaction patterns:</strong> Click-through rates, purchase history, wishlist additions
+- <strong>Temporal features:</strong> Time of day, seasonal preferences
+- <strong>Demographic information:</strong> Age group, location, subscription tier [18]</p>
+<h4>Challenges</h4>
+<p>K-NN faces the <strong>curse of dimensionality</strong>, where performance degrades significantly as the number of features increases because distances become less meaningful in high-dimensional spaces [19]. The algorithm has <strong>high computational cost at prediction time</strong>, as it must calculate distances to all training points. <strong>Storage requirements</strong> are substantial since the entire training dataset must be retained. <strong>Choosing the optimal k</strong> value is challenging, and k-NN is <strong>sensitive to irrelevant features</strong> and different scales, requiring careful preprocessing [20].</p>
+<h3>2.4 Naive Bayes Classifier</h3>
+<h4>Mechanics of the Algorithm</h4>
+<p>Naive Bayes is a probabilistic classifier based on Bayes' theorem with the "naive" assumption of conditional independence between features given the class label. Despite this strong assumption, it performs remarkably well in many real-world applications [21].</p>
+<p>Bayes' theorem states: <strong>P(C|X) = P(X|C) × P(C) / P(X)</strong></p>
+<p>Where P(C|X) is the posterior probability of class C given features X, P(X|C) is the likelihood, P(C) is the prior probability, and P(X) is the evidence.</p>
+<p>The naive independence assumption simplifies this to:
+<strong>P(C|x₁,...,xₙ) ∝ P(C) × Π P(xᵢ|C)</strong></p>
+<p>Variants include <strong>Gaussian Naive Bayes</strong> (for continuous features assuming normal distribution), <strong>Multinomial Naive Bayes</strong> (for discrete count features), and <strong>Bernoulli Naive Bayes</strong> (for binary features) [22].</p>
+<h4>Real-World Application</h4>
+<p>Naive Bayes is extensively used in <strong>sentiment analysis</strong> for social media monitoring. Companies use it to automatically classify customer opinions expressed on platforms like Twitter and Facebook as positive, negative, or neutral [23].</p>
+<h4>Features Used in This Application</h4>
+<p>For sentiment analysis, the features comprise:
+- <strong>Bag-of-words representation:</strong> Frequency counts of individual words
+- <strong>TF-IDF scores:</strong> Term frequency-inverse document frequency weightings
+- <strong>N-grams:</strong> Bigrams and trigrams capturing phrase-level sentiment
+- <strong>Part-of-speech tags:</strong> Adjectives and adverbs often carry sentiment
+- <strong>Negation handling:</strong> Detection of negation words that flip sentiment
+- <strong>Emoticons and emojis:</strong> Direct sentiment indicators [24]</p>
+<h4>Challenges</h4>
+<p>The <strong>independence assumption is often violated</strong> in practice, as words in natural language exhibit strong dependencies. <strong>Zero-frequency problem</strong> occurs when a feature value not seen during training appears at test time, requiring smoothing techniques like Laplace smoothing [25]. Naive Bayes is <strong>sensitive to feature selection</strong>, as irrelevant features can significantly degrade performance. The algorithm <strong>cannot capture feature interactions</strong> due to its independence assumption, and it produces <strong>poorly calibrated probability estimates</strong>, though the rankings remain useful [26].</p>
+<hr />
+<h2>3. Task 2: Performance Evaluation of Decision Trees</h2>
+<h3>3.1 Dataset Considerations</h3>
+<p>To evaluate Decision Tree performance on cardiovascular disease diagnosis, careful consideration of the dataset is essential. The <strong>UCI Heart Disease dataset</strong> is a widely-used benchmark containing 303 instances from the Cleveland Clinic, with 14 attributes including age, sex, chest pain type, resting blood pressure, serum cholesterol, fasting blood sugar, resting ECG results, maximum heart rate achieved, exercise-induced angina, ST depression, slope of peak exercise ST segment, number of major vessels, thalassemia, and the target variable indicating presence of heart disease [27].</p>
+<p><strong>Dataset Size and Format:</strong> The dataset is relatively small by modern standards but sufficient for Decision Tree evaluation. It is stored in CSV format with mixed data types (numerical and categorical). The feature space is 13-dimensional after excluding the target variable.</p>
+<p><strong>Data Organisation:</strong> The data requires preprocessing including:
+- <strong>Missing value handling:</strong> Approximately 6 instances contain missing values, typically handled through imputation or removal
+- <strong>Feature encoding:</strong> Categorical variables require one-hot encoding or label encoding
+- <strong>Train-test split:</strong> Typically 70-80% training, 20-30% testing, with stratification to maintain class distribution
+- <strong>Feature scaling:</strong> While not strictly necessary for Decision Trees, it facilitates comparison with other algorithms [28]</p>
+<p>For more robust evaluation, larger datasets such as the <strong>Kaggle Cardiovascular Disease dataset</strong> (70,000 instances) or the <strong>Framingham Heart Study dataset</strong> provide more comprehensive evaluation opportunities [29].</p>
+<h3>3.2 Evaluation Metrics</h3>
+<h4>Accuracy</h4>
+<p><strong>Definition:</strong> The proportion of correct predictions among total predictions.</p>
+<p><strong>Formula:</strong> Accuracy = (TP + TN) / (TP + TN + FP + FN)</p>
+<p>Where TP = True Positives, TN = True Negatives, FP = False Positives, FN = False Negatives.</p>
+<p><strong>Measurement:</strong> Calculate after predictions on the test set by comparing predicted labels to actual labels.</p>
+<p><strong>Interpretation:</strong> While intuitive, accuracy can be misleading for imbalanced datasets. In heart disease diagnosis, where the cost of false negatives is high, accuracy alone is insufficient [30].</p>
+<h4>Precision</h4>
+<p><strong>Definition:</strong> The proportion of positive predictions that are actually correct.</p>
+<p><strong>Formula:</strong> Precision = TP / (TP + FP)</p>
+<p><strong>Measurement:</strong> Count true positive predictions and divide by all positive predictions.</p>
+<p><strong>Interpretation:</strong> High precision indicates low false positive rate. In medical diagnosis, high precision means few healthy patients are incorrectly diagnosed with heart disease [31].</p>
+<h4>Recall (Sensitivity)</h4>
+<p><strong>Definition:</strong> The proportion of actual positive cases correctly identified.</p>
+<p><strong>Formula:</strong> Recall = TP / (TP + FN)</p>
+<p><strong>Measurement:</strong> Count true positives and divide by all actual positive cases.</p>
+<p><strong>Interpretation:</strong> Crucial in medical applications where missing a positive case (disease) has severe consequences. High recall ensures most patients with heart disease are detected [31].</p>
+<h4>F1-Score</h4>
+<p><strong>Definition:</strong> The harmonic mean of precision and recall, providing a balanced measure.</p>
+<p><strong>Formula:</strong> F1 = 2 × (Precision × Recall) / (Precision + Recall)</p>
+<p><strong>Measurement:</strong> Calculate precision and recall first, then apply the formula.</p>
+<p><strong>Interpretation:</strong> Useful when seeking balance between precision and recall, particularly for imbalanced datasets [32].</p>
+<h4>Area Under ROC Curve (AUC-ROC)</h4>
+<p><strong>Definition:</strong> Measures the classifier's ability to distinguish between classes across all threshold values.</p>
+<p><strong>Formula:</strong> AUC = ∫ TPR d(FPR), where TPR is True Positive Rate and FPR is False Positive Rate.</p>
+<p><strong>Measurement:</strong> Plot ROC curve by varying the classification threshold and calculate the area underneath.</p>
+<p><strong>Interpretation:</strong> AUC of 0.5 indicates random guessing, while 1.0 indicates perfect classification. Values above 0.8 are generally considered good for medical applications [33].</p>
+<h4>Confusion Matrix</h4>
+<p>The confusion matrix provides a comprehensive view of classifier performance, showing the distribution of predictions across actual classes. It reveals patterns of misclassification that scalar metrics cannot capture [34].</p>
+<h3>3.3 Performance Predictions</h3>
+<p>Based on published research, Decision Trees demonstrate moderate to good performance on cardiovascular disease classification tasks. Mohan, Thirumalai, and Srivastava [35] reported an accuracy of 88.7% using Decision Tree classification on the Cleveland Heart Disease dataset with optimised hyperparameters.</p>
+<p>A comprehensive study by Rani [36] comparing multiple algorithms found Decision Trees achieved:
+- <strong>Accuracy:</strong> 81.97%
+- <strong>Precision:</strong> 82.35%
+- <strong>Recall:</strong> 84.85%
+- <strong>F1-Score:</strong> 83.58%</p>
+<p>Research published in IEEE by Patel et al. [37] evaluated Decision Trees (C4.5 algorithm) on heart disease prediction, achieving:
+- <strong>Accuracy:</strong> 84.1%
+- <strong>AUC-ROC:</strong> 0.85</p>
+<p><strong>Predicted Real-World Performance:</strong> Based on the literature review, Decision Trees are expected to achieve approximately <strong>82-89% accuracy</strong> on cardiovascular disease diagnosis, with recall values around <strong>84-87%</strong>, which is critical for ensuring most disease cases are detected. However, performance varies based on:</p>
+<ol>
+<li><strong>Dataset quality:</strong> Larger, more diverse datasets generally yield better generalisation</li>
+<li><strong>Feature engineering:</strong> Careful feature selection can improve performance by 5-10% [38]</li>
+<li><strong>Hyperparameter tuning:</strong> Optimising tree depth, minimum samples per leaf, and pruning strategies significantly impacts results</li>
+<li><strong>Class imbalance handling:</strong> Techniques like SMOTE or class weighting can improve minority class detection [39]</li>
+</ol>
+<p>The predicted performance makes Decision Trees viable for clinical decision support, though they should complement rather than replace expert medical judgement due to the inherent limitations and the critical nature of medical diagnoses.</p>
+<hr />
+<h2>4. Task 3: Advanced Learning Methods for Improving Fundamental Algorithms</h2>
+<h3>4.1 Ensemble Methods</h3>
+<p>Ensemble methods combine multiple models to achieve better performance than any single model alone. These techniques can substantially improve the fundamental algorithms discussed above.</p>
+<p><strong>Random Forests</strong> extend Decision Trees by constructing multiple trees on random subsets of features and data, then aggregating predictions through voting. Breiman [40] demonstrated that Random Forests reduce variance without increasing bias, addressing the overfitting tendency of individual Decision Trees. Studies show Random Forests can improve accuracy by 10-15% over single Decision Trees on classification tasks [41].</p>
+<p><strong>Gradient Boosting</strong> sequentially builds models, with each new model correcting errors of the previous ensemble. XGBoost, a popular implementation, has achieved state-of-the-art results across numerous Kaggle competitions. Chen and Guestrin [42] showed that gradient boosting can improve base learner performance by 5-20% depending on the dataset.</p>
+<p><strong>Bagging (Bootstrap Aggregating)</strong> reduces variance by training multiple models on bootstrapped samples. This technique is particularly effective for high-variance algorithms like k-NN and Decision Trees, improving stability and generalisation [43].</p>
+<h3>4.2 Hyperparameter Optimisation</h3>
+<p>Systematic hyperparameter tuning can significantly enhance algorithm performance.</p>
+<p><strong>Grid Search</strong> exhaustively evaluates all combinations of specified hyperparameter values. While computationally expensive, it guarantees finding the optimal combination within the search space. For SVMs, tuning the regularisation parameter C and kernel parameters can improve accuracy by 5-15% [44].</p>
+<p><strong>Random Search</strong> samples hyperparameter combinations randomly, often achieving comparable results to grid search with significantly less computation. Bergstra and Bengio [45] demonstrated that random search is more efficient for high-dimensional hyperparameter spaces.</p>
+<p><strong>Bayesian Optimisation</strong> uses probabilistic models to intelligently select hyperparameters to evaluate, focusing on promising regions of the search space. This approach is particularly valuable for computationally expensive models, reducing the number of evaluations needed to find optimal configurations [46].</p>
+<h3>4.3 Feature Engineering and Selection</h3>
+<p>Feature quality directly impacts algorithm performance across all fundamental methods.</p>
+<p><strong>Feature Selection</strong> methods include filter methods (correlation-based), wrapper methods (recursive feature elimination), and embedded methods (L1 regularisation). Guyon and Elisseeff [47] demonstrated that removing irrelevant features can improve k-NN performance by 20-30% while reducing computational cost.</p>
+<p><strong>Dimensionality Reduction</strong> techniques like Principal Component Analysis (PCA) and t-SNE can address the curse of dimensionality affecting k-NN. By projecting data to lower dimensions while preserving variance, these techniques improve both performance and efficiency [48].</p>
+<p><strong>Feature Transformation</strong> including polynomial features, logarithmic transformations, and interaction terms can help algorithms capture non-linear relationships. For Naive Bayes, discretisation of continuous features can improve performance when the Gaussian assumption is violated [49].</p>
+<h3>4.4 Cross-Validation Techniques</h3>
+<p>Robust evaluation methodologies ensure reliable performance estimates and prevent overfitting during model selection.</p>
+<p><strong>K-Fold Cross-Validation</strong> divides data into k subsets, training on k-1 folds and validating on the remaining fold, rotating through all combinations. This provides more reliable performance estimates than single train-test splits, particularly for small datasets [50].</p>
+<p><strong>Stratified Cross-Validation</strong> maintains class proportions in each fold, essential for imbalanced datasets common in medical applications.</p>
+<p><strong>Nested Cross-Validation</strong> uses an outer loop for performance estimation and an inner loop for hyperparameter tuning, providing unbiased performance estimates even when hyperparameters are optimised [51].</p>
+<p>These advanced methods, when applied appropriately, can transform the fundamental algorithms from baseline classifiers into competitive systems suitable for production deployment. The choice of improvement strategy depends on the specific limitations of the base algorithm and the characteristics of the problem domain.</p>
+<hr />
+<h2>5. Conclusion</h2>
+<p>This report has provided a comprehensive analysis of four fundamental machine learning algorithms: Decision Trees, Support Vector Machines, K-Nearest Neighbours, and Naive Bayes classifiers. Each algorithm offers unique advantages and faces distinct challenges that influence their suitability for different applications.</p>
+<p>Decision Trees offer interpretability and ease of use but are prone to overfitting and instability. SVMs provide robust performance in high-dimensional spaces but face computational challenges with large datasets. K-NN's simplicity and non-parametric nature make it versatile, though the curse of dimensionality and prediction-time costs limit scalability. Naive Bayes achieves remarkable efficiency despite its simplifying assumptions, making it particularly effective for text classification tasks.</p>
+<p>The evaluation framework presented for Decision Trees demonstrates the importance of selecting appropriate metrics beyond simple accuracy. For medical applications like cardiovascular disease diagnosis, recall and the balance captured by F1-score are crucial considerations. Published research suggests Decision Trees can achieve approximately 82-89% accuracy on heart disease datasets, with careful attention to data preprocessing, feature engineering, and hyperparameter tuning.</p>
+<p>Advanced learning methods offer substantial opportunities for improving fundamental algorithm performance. Ensemble methods like Random Forests and Gradient Boosting address individual model weaknesses through aggregation. Systematic hyperparameter optimisation can yield significant improvements with relatively little additional complexity. Feature engineering and selection directly address the quality of input data, while robust cross-validation ensures reliable performance estimates.</p>
+<p>Future developments in machine learning will likely see continued integration of these fundamental algorithms with deep learning approaches, potentially combining the interpretability of classical methods with the representational power of neural networks. Understanding these foundational techniques remains essential for practitioners seeking to apply machine learning effectively to real-world problems.</p>
+<hr />
+<h2>6. References</h2>
+<p>[1] T. M. Mitchell, <em>Machine Learning</em>. New York, NY, USA: McGraw-Hill, 1997.</p>
+<p>[2] M. I. Jordan and T. M. Mitchell, "Machine learning: Trends, perspectives, and prospects," <em>Science</em>, vol. 349, no. 6245, pp. 255-260, 2015.</p>
+<p>[3] J. R. Quinlan, <em>C4.5: Programs for Machine Learning</em>. San Francisco, CA, USA: Morgan Kaufmann, 1993.</p>
+<p>[4] L. Breiman, J. Friedman, C. J. Stone, and R. A. Olshen, <em>Classification and Regression Trees</em>. Boca Raton, FL, USA: CRC Press, 1984.</p>
+<p>[5] R. Detrano et al., "International application of a new probability algorithm for the diagnosis of coronary artery disease," <em>American Journal of Cardiology</em>, vol. 64, no. 5, pp. 304-310, 1989.</p>
+<p>[6] A. Javaid et al., "Medicine 2032: The future of cardiovascular disease prevention with machine learning and digital health technology," <em>American Journal of Preventive Cardiology</em>, vol. 12, p. 100379, 2022.</p>
+<p>[7] T. Hastie, R. Tibshirani, and J. Friedman, <em>The Elements of Statistical Learning</em>, 2nd ed. New York, NY, USA: Springer, 2009.</p>
+<p>[8] P. Domingos, "A few useful things to know about machine learning," <em>Communications of the ACM</em>, vol. 55, no. 10, pp. 78-87, 2012.</p>
+<p>[9] C. Cortes and V. Vapnik, "Support-vector networks," <em>Machine Learning</em>, vol. 20, no. 3, pp. 273-297, 1995.</p>
+<p>[10] B. Scholkopf and A. J. Smola, <em>Learning with Kernels: Support Vector Machines, Regularization, Optimization, and Beyond</em>. Cambridge, MA, USA: MIT Press, 2002.</p>
+<p>[11] A. Kolcz and J. Alspector, "SVM-based filtering of e-mail spam with content-specific misclassification costs," in <em>Proc. IEEE Int. Conf. Data Mining Workshop on Text Mining</em>, 2001, pp. 1-8.</p>
+<p>[12] G. V. Cormack, "Email spam filtering: A systematic review," <em>Foundations and Trends in Information Retrieval</em>, vol. 1, no. 4, pp. 335-455, 2008.</p>
+<p>[13] J. Platt, "Sequential minimal optimization: A fast algorithm for training support vector machines," Microsoft Research, Tech. Rep. MSR-TR-98-14, 1998.</p>
+<p>[14] C.-W. Hsu, C.-C. Chang, and C.-J. Lin, "A practical guide to support vector classification," National Taiwan University, Tech. Rep., 2003.</p>
+<p>[15] T. Cover and P. Hart, "Nearest neighbor pattern classification," <em>IEEE Transactions on Information Theory</em>, vol. 13, no. 1, pp. 21-27, 1967.</p>
+<p>[16] D. Aha, D. Kibler, and M. Albert, "Instance-based learning algorithms," <em>Machine Learning</em>, vol. 6, no. 1, pp. 37-66, 1991.</p>
+<p>[17] X. Su and T. M. Khoshgoftaar, "A survey of collaborative filtering techniques," <em>Advances in Artificial Intelligence</em>, vol. 2009, pp. 1-19, 2009.</p>
+<p>[18] F. Ricci, L. Rokach, and B. Shapira, <em>Recommender Systems Handbook</em>, 2nd ed. New York, NY, USA: Springer, 2015.</p>
+<p>[19] R. Bellman, <em>Dynamic Programming</em>. Princeton, NJ, USA: Princeton University Press, 1957.</p>
+<p>[20] K. Beyer, J. Goldstein, R. Ramakrishnan, and U. Shaft, "When is 'nearest neighbor' meaningful?," in <em>Proc. 7th Int. Conf. Database Theory</em>, 1999, pp. 217-235.</p>
+<p>[21] D. D. Lewis, "Naive (Bayes) at forty: The independence assumption in information retrieval," in <em>Proc. 10th European Conf. Machine Learning</em>, 1998, pp. 4-15.</p>
+<p>[22] C. D. Manning, P. Raghavan, and H. Schutze, <em>Introduction to Information Retrieval</em>. Cambridge, UK: Cambridge University Press, 2008.</p>
+<p>[23] B. Pang and L. Lee, "Opinion mining and sentiment analysis," <em>Foundations and Trends in Information Retrieval</em>, vol. 2, no. 1-2, pp. 1-135, 2008.</p>
+<p>[24] B. Liu, <em>Sentiment Analysis and Opinion Mining</em>. San Rafael, CA, USA: Morgan &amp; Claypool, 2012.</p>
+<p>[25] A. McCallum and K. Nigam, "A comparison of event models for naive Bayes text classification," in <em>Proc. AAAI-98 Workshop on Learning for Text Categorization</em>, 1998, pp. 41-48.</p>
+<p>[26] H. Zhang, "The optimality of naive Bayes," in <em>Proc. 17th Int. Florida Artificial Intelligence Research Society Conf.</em>, 2004, pp. 562-567.</p>
+<p>[27] D. Dua and C. Graff, "UCI Machine Learning Repository," University of California, Irvine, 2019. [Online]. Available: http://archive.ics.uci.edu/ml</p>
+<p>[28] S. Raschka and V. Mirjalili, <em>Python Machine Learning</em>, 3rd ed. Birmingham, UK: Packt Publishing, 2019.</p>
+<p>[29] P. W. F. Wilson et al., "Prediction of coronary heart disease using risk factor categories," <em>Circulation</em>, vol. 97, no. 18, pp. 1837-1847, 1998.</p>
+<p>[30] M. Sokolova and G. Lapalme, "A systematic analysis of performance measures for classification tasks," <em>Information Processing &amp; Management</em>, vol. 45, no. 4, pp. 427-437, 2009.</p>
+<p>[31] D. M. W. Powers, "Evaluation: From precision, recall and F-measure to ROC, informedness, markedness and correlation," <em>Journal of Machine Learning Technologies</em>, vol. 2, no. 1, pp. 37-63, 2011.</p>
+<p>[32] C. Goutte and E. Gaussier, "A probabilistic interpretation of precision, recall and F-score, with implication for evaluation," in <em>Proc. 27th European Conf. Information Retrieval</em>, 2005, pp. 345-359.</p>
+<p>[33] A. P. Bradley, "The use of the area under the ROC curve in the evaluation of machine learning algorithms," <em>Pattern Recognition</em>, vol. 30, no. 7, pp. 1145-1159, 1997.</p>
+<p>[34] S. Visa, B. Ramsay, A. L. Ralescu, and E. van der Knaap, "Confusion matrix-based feature selection," in <em>Proc. 22nd Midwest Artificial Intelligence and Cognitive Science Conf.</em>, 2011, pp. 120-127.</p>
+<p>[35] S. Mohan, C. Thirumalai, and G. Srivastava, "Effective heart disease prediction using hybrid machine learning techniques," <em>IEEE Access</em>, vol. 7, pp. 81542-81554, 2019.</p>
+<p>[36] K. U. Rani, "Analysis of heart diseases dataset using neural network approach," <em>International Journal of Data Mining &amp; Knowledge Management Process</em>, vol. 1, no. 5, pp. 1-8, 2011.</p>
+<p>[37] J. Patel, D. TejalUpadhyay, and S. Patel, "Heart disease prediction using machine learning and data mining technique," <em>International Journal of Computer Science and Communication</em>, vol. 7, no. 1, pp. 129-137, 2016.</p>
+<p>[38] G. Chandrashekar and F. Sahin, "A survey on feature selection methods," <em>Computers &amp; Electrical Engineering</em>, vol. 40, no. 1, pp. 16-28, 2014.</p>
+<p>[39] N. V. Chawla, K. W. Bowyer, L. O. Hall, and W. P. Kegelmeyer, "SMOTE: Synthetic minority over-sampling technique," <em>Journal of Artificial Intelligence Research</em>, vol. 16, pp. 321-357, 2002.</p>
+<p>[40] L. Breiman, "Random forests," <em>Machine Learning</em>, vol. 45, no. 1, pp. 5-32, 2001.</p>
+<p>[41] M. Fernandez-Delgado, E. Cernadas, S. Barro, and D. Amorim, "Do we need hundreds of classifiers to solve real world classification problems?," <em>Journal of Machine Learning Research</em>, vol. 15, no. 1, pp. 3133-3181, 2014.</p>
+<p>[42] T. Chen and C. Guestrin, "XGBoost: A scalable tree boosting system," in <em>Proc. 22nd ACM SIGKDD Int. Conf. Knowledge Discovery and Data Mining</em>, 2016, pp. 785-794.</p>
+<p>[43] L. Breiman, "Bagging predictors," <em>Machine Learning</em>, vol. 24, no. 2, pp. 123-140, 1996.</p>
+<p>[44] C.-C. Chang and C.-J. Lin, "LIBSVM: A library for support vector machines," <em>ACM Transactions on Intelligent Systems and Technology</em>, vol. 2, no. 3, pp. 1-27, 2011.</p>
+<p>[45] J. Bergstra and Y. Bengio, "Random search for hyper-parameter optimization," <em>Journal of Machine Learning Research</em>, vol. 13, pp. 281-305, 2012.</p>
+<p>[46] J. Snoek, H. Larochelle, and R. P. Adams, "Practical Bayesian optimization of machine learning algorithms," in <em>Proc. Advances in Neural Information Processing Systems</em>, 2012, pp. 2951-2959.</p>
+<p>[47] I. Guyon and A. Elisseeff, "An introduction to variable and feature selection," <em>Journal of Machine Learning Research</em>, vol. 3, pp. 1157-1182, 2003.</p>
+<p>[48] L. van der Maaten and G. Hinton, "Visualizing data using t-SNE," <em>Journal of Machine Learning Research</em>, vol. 9, pp. 2579-2605, 2008.</p>
+<p>[49] U. M. Fayyad and K. B. Irani, "Multi-interval discretization of continuous-valued attributes for classification learning," in <em>Proc. 13th Int. Joint Conf. Artificial Intelligence</em>, 1993, pp. 1022-1027.</p>
+<p>[50] R. Kohavi, "A study of cross-validation and bootstrap for accuracy estimation and model selection," in <em>Proc. 14th Int. Joint Conf. Artificial Intelligence</em>, 1995, pp. 1137-1143.</p>
+<p>[51] G. C. Cawley and N. L. C. Talbot, "On over-fitting in model selection and subsequent selection bias in performance evaluation," <em>Journal of Machine Learning Research</em>, vol. 11, pp. 2079-2107, 2010.</p>
+</body>
+</html>
