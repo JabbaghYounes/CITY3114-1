@@ -1,0 +1,22 @@
+Assignment tasks:
+
+    1. [ 40 Marks in total ] (approx. 1200 words)
+You will need to discuss in depth four fundamental machine learning algorithms of your choosing.  Each of these descriptions must include (but not be limited to):
+        a. the mechanics of the algorithm.
+        b. example(s) of their application to real world.
+        c. the FEATURES that are used in this application to the real-world problem.
+        d. an analysis of the challenges the algorithm may present with its usage.
+
+    2. [40 Marks ] (approx. 1200 words)
+You must choose one of the four machine learning algorithms that that you have presented and explain how you may evaluate its performance on a real world problem.  This should include discussions on (but not be limited to):
+        a. The dataset(s)
+        b. The evaluation metrics
+        c. A prediction of its performance on a real world problem.  You MUST justify your reasoning for this prediction using referenced sources of published performances.  You are strongly advised to use IEEE as a source of information, amongst others.
+
+    3. [20 Marks] (approx. 600 words)
+Finally, you should include a section in your report which gives details of further learning methods that may, given the right scenario, improve the results of these fundamental machine learning algorithms.  These details MUST include appropriate references.
+
+Note: You need to ensure a depth of your research and analysis which is appropriate to this level 6 module.  To prepare for this report you will need to have completed considerable reading and research from multiple sources.  This should also extend well beyond the standard textbook recommended.  Please note that relevant journal articles are accessed via PRIMO – the Plymouth University access to journals using your University of Plymouth email and login details. 
+
+Important Note:
+Your report should be approximately 4000 words (not including references). It must include suitable headings and page numbers.  The report must cite appropriate, authoritative literature to support its claims. You must use either Harvard or IEEE style referencing (do not mix).
