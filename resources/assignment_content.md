@@ -9,11 +9,13 @@
 ## Table of Contents
 
 1. Introduction
-2. Task 1: Four Fundamental Machine Learning Algorithms
+2. Task 1: Six Fundamental Machine Learning Algorithms
    - 2.1 Decision Trees
    - 2.2 Support Vector Machines (SVM)
    - 2.3 K-Nearest Neighbours (k-NN)
    - 2.4 Naive Bayes Classifier
+   - 2.5 Logistic Regression
+   - 2.6 DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
 3. Task 2: Performance Evaluation of Decision Trees
    - 3.1 Dataset Considerations
    - 3.2 Evaluation Metrics
@@ -32,13 +34,13 @@
 
 Machine learning has emerged as one of the most transformative technologies in contemporary computing, fundamentally altering how systems process information and make decisions. As a subset of artificial intelligence, machine learning enables computer systems to learn from data and improve their performance over time without being explicitly programmed for every possible scenario [1]. This capability has profound implications across numerous industries, from healthcare diagnostics to financial fraud detection, making an understanding of fundamental machine learning algorithms essential for modern computing professionals.
 
-The significance of machine learning stems from its ability to identify patterns within vast datasets that would be impossible for humans to detect manually. According to Jordan and Mitchell [2], machine learning algorithms can process millions of data points to extract meaningful insights, enabling organisations to make data-driven decisions with unprecedented accuracy. This report examines four fundamental machine learning algorithms: Decision Trees, Support Vector Machines (SVM), K-Nearest Neighbours (k-NN), and Naive Bayes classifiers. Each algorithm represents a distinct approach to pattern recognition and classification, with unique strengths and limitations that make them suitable for different applications.
+The significance of machine learning stems from its ability to identify patterns within vast datasets that would be impossible for humans to detect manually. According to Jordan and Mitchell [2], machine learning algorithms can process millions of data points to extract meaningful insights, enabling organisations to make data-driven decisions with unprecedented accuracy. This report examines six fundamental machine learning algorithms: Decision Trees, Support Vector Machines (SVM), K-Nearest Neighbours (k-NN), Naive Bayes classifiers, Logistic Regression, and DBSCAN. Each algorithm represents a distinct approach to pattern recognition and classification, with unique strengths and limitations that make them suitable for different applications. Notably, several of these algorithms have significant applications in cybersecurity, as highlighted by the Cylance Data Science Team [52] in their work on artificial intelligence for security professionals.
 
 The objectives of this report are threefold. First, it provides an in-depth analysis of each algorithm's mechanics, real-world applications, feature requirements, and associated challenges. Second, it presents a comprehensive framework for evaluating the performance of Decision Trees on real-world problems, including dataset considerations and evaluation metrics. Third, it explores advanced learning methods that can enhance the performance of these fundamental algorithms, demonstrating how modern techniques can address their inherent limitations.
 
 ---
 
-## 2. Task 1: Four Fundamental Machine Learning Algorithms
+## 2. Task 1: Six Fundamental Machine Learning Algorithms
 
 ### 2.1 Decision Trees
 
@@ -163,6 +165,74 @@ For sentiment analysis, the features comprise:
 #### Challenges
 
 The **independence assumption is often violated** in practice, as words in natural language exhibit strong dependencies. **Zero-frequency problem** occurs when a feature value not seen during training appears at test time, requiring smoothing techniques like Laplace smoothing [25]. Naive Bayes is **sensitive to feature selection**, as irrelevant features can significantly degrade performance. The algorithm **cannot capture feature interactions** due to its independence assumption, and it produces **poorly calibrated probability estimates**, though the rankings remain useful [26].
+
+### 2.5 Logistic Regression
+
+#### Mechanics of the Algorithm
+
+Logistic Regression is a supervised learning algorithm used for binary and multi-class classification tasks. Despite its name, it is a classification method rather than a regression technique. The algorithm models the probability that a given input belongs to a particular class by applying the logistic (sigmoid) function to a linear combination of input features [53].
+
+The sigmoid function is defined as: **σ(z) = 1 / (1 + e⁻ᶻ)**
+
+Where **z = w·x + b** is the linear combination of weights w, input features x, and bias b. The output σ(z) represents the probability of the positive class, constrained between 0 and 1.
+
+The model is trained by maximising the log-likelihood function, or equivalently minimising the binary cross-entropy loss:
+
+**L = -Σ [yᵢ log(ŷᵢ) + (1 - yᵢ) log(1 - ŷᵢ)]**
+
+Optimisation is typically performed using gradient descent or more advanced methods such as L-BFGS. Regularisation techniques (L1 or L2) are commonly applied to prevent overfitting and improve generalisation [54].
+
+#### Real-World Application
+
+Logistic Regression has become a critical algorithm in **cybersecurity**, particularly for **malware detection and network intrusion classification**. As described by the Cylance Data Science Team [52], Logistic Regression serves as a foundational algorithm for security professionals seeking to classify network traffic as malicious or benign, and to detect malware based on extracted file features. Its probabilistic output is especially valuable in security operations, where analysts need confidence scores to prioritise alerts and triage incidents effectively.
+
+In network intrusion detection systems (NIDS), Logistic Regression classifies incoming network packets and sessions to determine whether they represent normal activity or an attempted attack [55]. Its speed and interpretability make it well-suited for real-time threat detection environments where rapid classification decisions are essential.
+
+#### Features Used in This Application
+
+In cybersecurity applications for intrusion detection, the features typically include:
+- **Network traffic features:** Packet size, protocol type, connection duration, number of bytes transferred
+- **Session-level features:** Number of failed login attempts, source and destination port numbers, service type
+- **Statistical features:** Mean packet inter-arrival time, flow rate, ratio of incoming to outgoing packets
+- **Payload-based features:** Presence of known exploit signatures, entropy of packet contents
+- **Behavioural features:** Frequency of connections to unusual ports, deviation from baseline traffic patterns [52][55]
+
+#### Challenges
+
+Logistic Regression assumes a **linear relationship** between the features and the log-odds of the outcome, which limits its ability to capture complex non-linear patterns common in sophisticated cyber attacks [54]. The algorithm is **sensitive to multicollinearity**, where highly correlated features can produce unstable coefficient estimates. **Feature engineering is critical**, as the algorithm relies heavily on the quality and relevance of input features — poorly chosen features lead to weak classifiers. Additionally, Logistic Regression can **struggle with highly imbalanced datasets**, which are common in cybersecurity where malicious events are far less frequent than benign traffic, requiring techniques such as oversampling or cost-sensitive learning [56].
+
+### 2.6 DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+
+#### Mechanics of the Algorithm
+
+DBSCAN is an unsupervised clustering algorithm that groups together points that are closely packed in the feature space while marking points in low-density regions as outliers or noise. Unlike partition-based methods such as K-Means, DBSCAN does not require the number of clusters to be specified in advance and can discover clusters of arbitrary shape [57].
+
+The algorithm relies on two key parameters: **ε (epsilon)**, which defines the radius of a neighbourhood around each point, and **MinPts**, which specifies the minimum number of points required to form a dense region. Points are classified into three categories:
+
+- **Core points:** Points that have at least MinPts neighbours within their ε-neighbourhood
+- **Border points:** Points within the ε-neighbourhood of a core point but with fewer than MinPts neighbours themselves
+- **Noise points:** Points that are neither core nor border points
+
+The algorithm proceeds by selecting an unvisited point, checking if it is a core point, and if so, expanding the cluster by recursively adding all density-reachable points. This process continues until all points have been visited [58].
+
+#### Real-World Application
+
+DBSCAN has emerged as a particularly valuable algorithm in **cybersecurity for anomaly detection and threat hunting**. The Cylance Data Science Team [52] highlights DBSCAN as a key unsupervised learning technique for security professionals, specifically for identifying anomalous behaviour patterns that may indicate security breaches, insider threats, or advanced persistent threats (APTs). Unlike supervised methods that require labelled attack data, DBSCAN can detect previously unseen attack patterns by identifying data points that deviate from normal clusters of behaviour.
+
+In practice, security operations centres (SOCs) deploy DBSCAN to cluster network traffic, user activity logs, and system events. Points classified as noise by the algorithm often correspond to suspicious or malicious activity that warrants further investigation [59].
+
+#### Features Used in This Application
+
+For cybersecurity anomaly detection, the features include:
+- **Network behaviour features:** Connection frequency, data volume per session, number of distinct destination IPs contacted
+- **Temporal features:** Access time patterns, deviation from typical working hours, login frequency anomalies
+- **User behaviour features:** File access patterns, privilege escalation events, unusual application usage
+- **System-level features:** Process creation rates, registry modifications, unusual file system operations
+- **Authentication features:** Failed authentication counts, access from unusual geographic locations, simultaneous sessions from different IPs [52][59]
+
+#### Challenges
+
+DBSCAN's performance is **highly sensitive to the choice of ε and MinPts parameters**, and selecting appropriate values can be difficult without domain expertise, particularly in high-dimensional cybersecurity datasets [58]. The algorithm **struggles with clusters of varying densities**, which is common in network traffic where normal activity may have different density profiles across different services or time periods. **High-dimensional data degrades performance** because distance metrics become less meaningful as dimensionality increases, a problem shared with k-NN [57]. Additionally, DBSCAN has a **worst-case time complexity of O(n²)**, which can be prohibitive for the large-scale datasets typical in security monitoring, though spatial indexing structures such as KD-trees can reduce this to O(n log n) in practice [60].
 
 ---
 
@@ -313,9 +383,9 @@ These advanced methods, when applied appropriately, can transform the fundamenta
 
 ## 5. Conclusion
 
-This report has provided a comprehensive analysis of four fundamental machine learning algorithms: Decision Trees, Support Vector Machines, K-Nearest Neighbours, and Naive Bayes classifiers. Each algorithm offers unique advantages and faces distinct challenges that influence their suitability for different applications.
+This report has provided a comprehensive analysis of six fundamental machine learning algorithms: Decision Trees, Support Vector Machines, K-Nearest Neighbours, Naive Bayes classifiers, Logistic Regression, and DBSCAN. Each algorithm offers unique advantages and faces distinct challenges that influence their suitability for different applications.
 
-Decision Trees offer interpretability and ease of use but are prone to overfitting and instability. SVMs provide robust performance in high-dimensional spaces but face computational challenges with large datasets. K-NN's simplicity and non-parametric nature make it versatile, though the curse of dimensionality and prediction-time costs limit scalability. Naive Bayes achieves remarkable efficiency despite its simplifying assumptions, making it particularly effective for text classification tasks.
+Decision Trees offer interpretability and ease of use but are prone to overfitting and instability. SVMs provide robust performance in high-dimensional spaces but face computational challenges with large datasets. K-NN's simplicity and non-parametric nature make it versatile, though the curse of dimensionality and prediction-time costs limit scalability. Naive Bayes achieves remarkable efficiency despite its simplifying assumptions, making it particularly effective for text classification tasks. Logistic Regression provides probabilistic outputs and interpretable models well-suited to binary classification in cybersecurity, though its linear assumptions limit its capacity for capturing complex attack patterns. DBSCAN offers a powerful unsupervised approach to anomaly detection, capable of identifying previously unseen threats without labelled data, though parameter sensitivity and scalability remain practical challenges in security monitoring environments.
 
 The evaluation framework presented for Decision Trees demonstrates the importance of selecting appropriate metrics beyond simple accuracy. For medical applications like cardiovascular disease diagnosis, recall and the balance captured by F1-score are crucial considerations. Published research suggests Decision Trees can achieve approximately 82-89% accuracy on heart disease datasets, with careful attention to data preprocessing, feature engineering, and hyperparameter tuning.
 
@@ -428,3 +498,21 @@ Future developments in machine learning will likely see continued integration of
 [50] R. Kohavi, "A study of cross-validation and bootstrap for accuracy estimation and model selection," in *Proc. 14th Int. Joint Conf. Artificial Intelligence*, 1995, pp. 1137-1143.
 
 [51] G. C. Cawley and N. L. C. Talbot, "On over-fitting in model selection and subsequent selection bias in performance evaluation," *Journal of Machine Learning Research*, vol. 11, pp. 2079-2107, 2010.
+
+[52] Cylance Data Science Team, *Introduction to Artificial Intelligence for Security Professionals*. Austin, TX, USA: Cylance Inc., 2017.
+
+[53] D. W. Hosmer, S. Lemeshow, and R. X. Sturdivant, *Applied Logistic Regression*, 3rd ed. Hoboken, NJ, USA: Wiley, 2013.
+
+[54] C. M. Bishop, *Pattern Recognition and Machine Learning*. New York, NY, USA: Springer, 2006.
+
+[55] A. L. Buczak and E. Guven, "A survey of data mining and machine learning methods for cyber security intrusion detection," *IEEE Communications Surveys & Tutorials*, vol. 18, no. 2, pp. 1153-1176, 2016.
+
+[56] H. He and E. A. Garcia, "Learning from imbalanced data," *IEEE Transactions on Knowledge and Data Engineering*, vol. 21, no. 9, pp. 1263-1284, 2009.
+
+[57] M. Ester, H.-P. Kriegel, J. Sander, and X. Xu, "A density-based algorithm for discovering clusters in large spatial databases with noise," in *Proc. 2nd Int. Conf. Knowledge Discovery and Data Mining (KDD-96)*, 1996, pp. 226-231.
+
+[58] E. Schubert, J. Sander, M. Ester, H.-P. Kriegel, and X. Xu, "DBSCAN revisited, revisited: Why and how you should (still) use DBSCAN," *ACM Transactions on Database Systems*, vol. 42, no. 3, pp. 1-21, 2017.
+
+[59] M. Ahmed, A. Naser Mahmood, and J. Hu, "A survey of network anomaly detection techniques," *Journal of Network and Computer Applications*, vol. 60, pp. 19-31, 2016.
+
+[60] J. L. Bentley, "Multidimensional binary search trees used for associative searching," *Communications of the ACM*, vol. 18, no. 9, pp. 509-517, 1975.
